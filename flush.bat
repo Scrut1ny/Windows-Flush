@@ -1,5 +1,4 @@
 @echo off
-setlocal EnableDelayedExpansion
 
 fltmc >nul 2>&1 || (
     echo(&echo   [33m# Administrator privileges are required.&echo([0m
@@ -16,10 +15,10 @@ fltmc >nul 2>&1 || (
 	nbtstat -R
 	nbtstat -RR
 	ipconfig/flushdns
-	ipconfig/registerdns
 	netsh winsock reset
 	net stop dps
 	del /f/s/q/a "%windir%\System32\sru\*"
-	net start dps
 	ipconfig/renew
+	net start dps
+	ipconfig/registerdns
 )
